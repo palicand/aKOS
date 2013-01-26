@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="course_name">Name:</string>
+    <string name="course_code">Code:</string>
+    <string name="course_credits">Credits:</string>
+    <string name="course_completion">Completion:</string>
+    <string name="course_finished">Finished</string>
+    <string name="course_not_finished">Not finished</string>
+    <string name="course_description">Description</string>
+
+    <string name="bundle_key_course">cz.cvut.fit.palicand.akos.CourseActivity.BUNLE_KEY_COURSE</string>
+</resources>

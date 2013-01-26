@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="course_completion_exam">Exam</string>
+    <string name="course_completion_credit">Assessment</string>
+    <string name="course_completion_credit_exam">Assessment + examination </string>
+    <string name="course_completion_clfd_credit">Graded assessment</string>
+    <string name="course_completion_defence">Defence</string>
+    <string name="course_completion_nothing">Nothing</string>
+    <string name="course_completion_undefined">Undefined</string>
+</resources>

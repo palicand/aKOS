@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_timetable">Timetable</string>
+	<string name="menu_info">Info</string>
+	<string name="menu_courses">Courses</string>
+	<string name="menu_exams">Exams</string>
+    <string name="toast_authenticated">Authenticated</string>
+    <string name="toast_not_authenticated">Authentication failed</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="courses_semester_label">Courses</string>
+    <string name="bundle_key_enrolled_course">cz.cvut.fit.palicand.akos.bundle_key_enrolled_course</string>
+</resources>

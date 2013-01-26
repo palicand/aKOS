@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="class_type_atelier">Atelier</string>
+    <string name="class_type_block">Block</string>
+    <string name="class_type_consultation">Consultation</string>
+    <string name="class_type_laboratory">Laboratory</string>
+    <string name="class_type_lecture">Lecture</string>
+    <string name="class_type_project">Project</string>
+    <string name="class_type_project_indv">Individual project</string>
+    <string name="class_type_project_team">Team project</string>
+    <string name="class_type_proseminar">Proseminar</string>
+    <string name="class_type_pt_course">Physical education</string>
+    <string name="class_type_seminar">Seminar</string>
+    <string name="class_type_tutorial">Tutorial</string>
+    <string name="class_type_undefined">Undefined</string>
+</resources>

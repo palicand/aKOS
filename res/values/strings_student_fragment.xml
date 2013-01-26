@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="student_info_name_label">Name</string>
+    <string name="student_info_username_label">Username</string>
+    <string name="student_info_email_label">Email</string>
+    <string name="student_info_order_label">Order</string>
+</resources>

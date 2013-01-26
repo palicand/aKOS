@@ -166,3 +166,6 @@ pip-log.txt
 project.properties
 .idea
 out
+*.iml
+
+*strings_authentication.xml
