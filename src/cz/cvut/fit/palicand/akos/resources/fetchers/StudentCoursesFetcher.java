@@ -1,21 +1,13 @@
 package cz.cvut.fit.palicand.akos.resources.fetchers;
 
-import android.util.Log;
 import cz.cvut.fit.palicand.akos.downloader.Downloader;
 import cz.cvut.fit.palicand.akos.resources.CourseEnrollment;
 import cz.cvut.fit.palicand.akos.resources.OnResourceProcessedListener;
-import cz.cvut.fit.palicand.akos.resources.ResourceFetcher;
 import cz.cvut.fit.palicand.akos.resources.ResourceHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -71,17 +63,27 @@ class StudentCoursesHandler extends ResourceHandler {
 }
 
 public class StudentCoursesFetcher extends ResourceFetcher {
-    private final String RESOURCE_URI;
+    private final static String BASE_URI = "students/";
+    private String username;
     public StudentCoursesFetcher(String username, OnResourceProcessedListener listener) {
+        this(username, null, listener);
+    }
+
+    public StudentCoursesFetcher(String username, String semesterCode, OnResourceProcessedListener listener) {
         super(listener);
-        RESOURCE_URI = "students/" + username + "/enrolledCourses";
+        this.username = username;
+        downloader = new Downloader(getUri());
+        setSemester(semesterCode);
     }
 
     @Override
     public void run() {
-        Downloader downloader = new Downloader(RESOURCE_URI);
         InputStream stream = downloader.download();
-
         parse(stream, new StudentCoursesHandler(listener));
+    }
+
+    @Override
+    protected String getUri() {
+        return BASE_URI + username + "/enrolledCourses";
     }
 }

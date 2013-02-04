@@ -1,5 +1,13 @@
 package cz.cvut.fit.palicand.akos.resources;
 
+import cz.cvut.fit.palicand.akos.resources.fetchers.CourseFetcher;
+import cz.cvut.fit.palicand.akos.resources.fetchers.ParallelFetcher;
+import cz.cvut.fit.palicand.akos.resources.fetchers.StudentCoursesFetcher;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: palicka
@@ -64,7 +72,40 @@ public class Student extends KOSResource {
     }
 
     public void fetchCourses(OnResourceProcessedListener listener) {
-
+        StudentCoursesFetcher fetcher = new StudentCoursesFetcher(username, listener);
+        new Thread(fetcher).start();
     }
 
+    public void fetchCourses(OnResourceProcessedListener listener, String semester) {
+       StudentCoursesFetcher fetcher = new StudentCoursesFetcher(username, semester, listener);
+        new Thread(fetcher).start();
+    }
+
+    /**
+     * Gets all the previous semesters for student
+     * @param currentSemester the current semester code
+     * @return all the previous semester codes the student was enrolled int
+     */
+    public Collection<Semester> getAllSemesterCodes(Semester currentSemester) {
+        int prevSemesters = 0;
+        if(currentSemester.getType() == Semester.SemesterType.WINTER) {
+            prevSemesters = 2*(getGrade() - 1);
+        } else {
+            prevSemesters = 2*getGrade() - 1;
+        }
+
+        ArrayList<Semester> semesters = new ArrayList<Semester>(prevSemesters);
+        for (int i = 0; i < prevSemesters; ++i) {
+            Semester semester = new Semester();
+            semester.setCode(currentSemester.getPrevCode());
+            semesters.add(semester);
+            currentSemester = semester;
+        }
+
+        return semesters;
+    }
+
+    public void fetchParallels(OnResourceProcessedListener listener, Semester semester) {
+        new Thread(new ParallelFetcher(username, semester.getCode(),listener)).start();
+    }
 }

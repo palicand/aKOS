@@ -44,6 +44,7 @@ public class StudentInfoFragment extends Fragment {
             public boolean handleMessage(Message msg) {
                 if(msg.what == 0) {
                     student = (Student)msg.obj;
+                    ((InfoActivity) getActivity()).setStudent(student);
                     updateView();
                     return true;
                 }
@@ -80,10 +81,13 @@ public class StudentInfoFragment extends Fragment {
         if(savedInstanceState != null && savedInstanceState.containsKey(getString(R.string.student_bundle_key))) {
             student = (Student)savedInstanceState.getSerializable(getString(R.string.student_bundle_key));
             updateView();
-        } else if(student != null)
-            updateView();
-        else
-            acquireStudent();
+        } else {
+            student = ((InfoActivity)getActivity()).getStudent();
+            if(student == null)
+                acquireStudent();
+            else
+                updateView();
+        }
         return view;
     }
 

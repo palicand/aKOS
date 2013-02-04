@@ -4,6 +4,8 @@ import cz.cvut.fit.palicand.akos.downloader.Downloader;
 import cz.cvut.fit.palicand.akos.resources.*;
 import org.xml.sax.SAXException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -78,12 +80,15 @@ public class CourseFetcher extends ResourceFetcher implements Runnable {
         this(null, listener);
     }
 
+
     public CourseFetcher(String code, OnResourceProcessedListener listener) {
         super(listener);
         this.code = code;
+        downloader = new Downloader(getUri());
     }
 
-    private String createURI() {
+    @Override
+    protected String getUri() {
         if(code == null) {
             return RESOURCE_URI;
         } else {
@@ -91,11 +96,22 @@ public class CourseFetcher extends ResourceFetcher implements Runnable {
         }
     }
 
+    private String getFileName() {
+        return "course_" + code;
+    }
+
     public void run() {
-        Downloader downloader = new Downloader(createURI());
-        downloader.setParameter("fields", fields);
         downloader.setParameter("detail", "1");
-        InputStream stream = downloader.download();
-        parse(stream, new CourseHandler(listener));
+        try {
+            InputStream stream = openFile(getFileName());
+            if(stream == null) {
+                stream = downloader.download();
+                saveFile(stream, getFileName());
+                stream = openFile(getFileName());
+            }
+            parse(stream, new CourseHandler(listener));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

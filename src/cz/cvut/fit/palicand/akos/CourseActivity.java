@@ -8,11 +8,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
-import cz.cvut.fit.palicand.akos.resources.Course;
-import cz.cvut.fit.palicand.akos.resources.CourseEnrollment;
-import cz.cvut.fit.palicand.akos.resources.KOSResource;
-import cz.cvut.fit.palicand.akos.resources.OnResourceProcessedListener;
+import cz.cvut.fit.palicand.akos.resources.*;
 import cz.cvut.fit.palicand.akos.views.PairedTextView;
+
+import java.util.EnumSet;
 
 /**
  * Created with IntelliJ IDEA.
@@ -77,7 +76,7 @@ public class CourseActivity extends Activity implements OnResourceProcessedListe
         }
         credits.setContentText(Integer.toString(course.getCredits()));
         description.setContentText(course.getDescription());
-
+        completion.setContentText(course.getCompletion().getCode());
 
     }
 

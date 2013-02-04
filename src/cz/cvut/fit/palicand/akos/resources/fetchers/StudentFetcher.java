@@ -2,7 +2,6 @@ package cz.cvut.fit.palicand.akos.resources.fetchers;
 
 import cz.cvut.fit.palicand.akos.downloader.Downloader;
 import cz.cvut.fit.palicand.akos.resources.OnResourceProcessedListener;
-import cz.cvut.fit.palicand.akos.resources.ResourceFetcher;
 import cz.cvut.fit.palicand.akos.resources.ResourceHandler;
 import cz.cvut.fit.palicand.akos.resources.Student;
 import org.xml.sax.SAXException;
@@ -71,12 +70,17 @@ public class StudentFetcher extends ResourceFetcher {
     public StudentFetcher(String username, OnResourceProcessedListener listener) {
         super(listener);
         this.username = username;
+        downloader = new Downloader(getUri());
     }
 
     @Override
     public void run() {
-        Downloader downloader = new Downloader(RESOURCE_URI + username);
         InputStream stream = downloader.download();
         parse(stream, new StudentHandler(listener));
+    }
+
+    @Override
+    protected String getUri() {
+        return RESOURCE_URI + username;
     }
 }

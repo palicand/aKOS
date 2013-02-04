@@ -8,7 +8,8 @@ package cz.cvut.fit.palicand.akos.resources;
  * To change this template use File | Settings | File Templates.
  */
 
-import cz.cvut.fit.palicand.akos.resources.fetchers.StudentCoursesFetcher;
+import cz.cvut.fit.palicand.akos.resources.fetchers.ResourceFetcher;
+import cz.cvut.fit.palicand.akos.resources.fetchers.SemesterFetcher;
 import cz.cvut.fit.palicand.akos.resources.fetchers.StudentFetcher;
 
 /**
@@ -30,12 +31,12 @@ public class Resources {
         start(new StudentFetcher(username, listener));
     }
 
-    /**
-     * Gets all the courses the student is enrolled in
-     * @param username
-     * @param listener
-     */
-    public static void fetchStudentCourses(String username, OnResourceProcessedListener listener) {
-        start(new StudentCoursesFetcher(username, listener));
+    public static void fetchCurrentSemester(OnResourceProcessedListener listener) {
+        start(new SemesterFetcher(listener));
     }
+
+    public static void fetchNextSemester(OnResourceProcessedListener listener) {
+        start(new SemesterFetcher(listener, "next"));
+    }
+
 }

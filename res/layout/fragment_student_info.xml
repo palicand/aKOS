@@ -10,7 +10,8 @@
         android:id="@+id/student_info_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelText="@string/student_info_name_label">
+        app:labelText="@string/student_info_name_label"
+        app:textSize="20sp">
     </cz.cvut.fit.palicand.akos.views.PairedTextView>
     <cz.cvut.fit.palicand.akos.views.PairedTextView
         android:id="@+id/student_info_username"

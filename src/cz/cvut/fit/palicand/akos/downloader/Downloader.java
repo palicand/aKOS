@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -43,6 +44,16 @@ public class Downloader {
         this.url = BASE_URL + VERSION + "/" + uri + FORMAT;
         parameters = new HashMap<String, String>();
         loadAuthentication();
+        setLocale();
+    }
+
+    private void setLocale() {
+        setParameter("multilang", "false");
+        String lang = Locale.getDefault().getLanguage();
+        if(lang.equalsIgnoreCase("cs") || lang.equalsIgnoreCase("sk"))
+            setParameter("lang", "cs");
+        else
+            setParameter("lang", "en");
     }
 
     private void loadAuthentication() {
@@ -84,7 +95,8 @@ public class Downloader {
     }
 
     public Downloader setParameter(String parameter, String value) {
-        parameters.put(parameter, value);
+        if(value != null && parameter != null)
+            parameters.put(parameter, value);
         return this;
     }
 

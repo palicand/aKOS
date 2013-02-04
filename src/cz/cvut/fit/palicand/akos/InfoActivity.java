@@ -15,6 +15,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import cz.cvut.fit.palicand.akos.resources.Student;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,7 +28,7 @@ public class InfoActivity extends FragmentActivity {
 
     private String username;
     private boolean authenticated;
-
+    private Student student;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,14 +101,13 @@ public class InfoActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_timetable:
+            loadFragment(new TimetableFragment());
 			return true;
 		case R.id.menu_info:
 			loadFragment(new StudentInfoFragment());
 			return true;
 		case R.id.menu_courses:
 			loadFragment(new CoursesFragment());
-			return true;
-		case R.id.menu_exams:
 			return true;
 		default:
 			return false;
@@ -128,4 +128,12 @@ public class InfoActivity extends FragmentActivity {
 			Toast.makeText(this, "You must be authenticated", Toast.LENGTH_LONG).show();
 		}
 	}
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

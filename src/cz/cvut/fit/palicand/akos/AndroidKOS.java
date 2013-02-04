@@ -2,7 +2,9 @@ package cz.cvut.fit.palicand.akos;
 
 import android.app.Application;
 import android.os.Bundle;
+import cz.cvut.fit.palicand.akos.resources.Student;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -14,7 +16,6 @@ import java.util.HashMap;
  */
 public class AndroidKOS extends Application {
     private static AndroidKOS instance;
-
     @Override
     public void onCreate() {
         instance = this;
@@ -30,4 +31,5 @@ public class AndroidKOS extends Application {
         map.put("username", getString(R.string.authentication_username));
         return map;
     }
+
 }

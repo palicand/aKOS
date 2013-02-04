@@ -77,7 +77,7 @@ public class CourseEnrollment extends KOSResource {
 
     public void fetchCourse(OnResourceProcessedListener listener) {
         CourseFetcher fetcher = new CourseFetcher(code, listener);
-        fetcher.fields = "content(description,completion,credits,classesType)";
+        fetcher.setFields("content(description,completion,credits,classesType)");
         new Thread(fetcher).start();
     }
 }
